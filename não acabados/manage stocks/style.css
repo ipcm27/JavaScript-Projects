@@ -1,0 +1,65 @@
+#container-fundo {
+  display: flex;
+  flex-direction: row;
+  height: 540px;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+}
+
+#content-box {
+  background-color: #0d6efd;
+  justify-content: center;
+  align-items: center !important;
+  margin: 10px;
+  width: 95% !important;
+  border-radius: 1%;
+  align-items: center;
+}
+
+#content {
+  background-color: #d8dee5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+#myChart {
+  height: 300px !important;
+  width: 800px !important;
+}
+
+#row-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 66%;
+  width: 95%;
+}
+#row-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 33%;
+  width: 95%;
+}
+#box {
+  background-color: #0a53be;
+  justify-content: center;
+  margin: 10px;
+  width: 95% !important;
+  border-radius: 1%;
+}
+
+.row .col {
+  color: aliceblue;
+  border-style: dotted !important;
+  border: 2px !important;
+  border-color: aliceblue !important;
+}
