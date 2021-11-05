@@ -11,13 +11,12 @@ const incomeList = document.querySelector("#income .list");
 const expenseList = document.querySelector("#expense .list");
 const allList = document.querySelector("#all .list");
 
+const wishList = document.querySelector("#wish .list");
+
 // SELECT BTNS
 const expenseBtn = document.getElementById("expenseBtn");
 const incomeBtn = document.getElementById("incomeBtn");
 const allBtn = document.getElementById("allBtn");
-
-const wishButton = document.getElementById("wishbtn");
-const fixedCostButton = document.getElementById("fixedCostbtn");
 
 // INPUT BTS
 const addExpense = document.querySelector(".add-expense");
@@ -28,59 +27,29 @@ const addIncome = document.querySelector(".add-income");
 const incomeTitle = document.getElementById("income-title-input");
 const incomeAmount = document.getElementById("income-amount-input");
 
+const addWish = document.querySelector(".addWish");
+const wishTitle = document.getElementById("wish-title-input");
+const wishAmount = document.getElementById("wish-amount-input");
+
 //Variables
 let ENTRY_LIST;
+let WISH_LIST;
 let balance = 0,
   income = 0,
   outcome = 0;
 const Delete = "delete";
 const Edit = "edit";
 
-const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-const chart = document.querySelector(".chart");
-const R = 20;
-
-// LOOK IF THERE IS SAVED DATA IN LOCALSTORAGE
+//LOOK IF THERE IS SAVED DATA IN LOCALSTORAGE
 ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
+WISH_LIST = JSON.parse(localStorage.getItem("wish_list")) || [];
 updateUI();
+updateWishList();
 
-//CHART
-
-canvas.width = 50;
-canvas.height = 50;
-
-chart.appendChild(canvas);
-
-ctx.lineWidth = 8;
-
-function drawCircle(color, ratio, anticlockwise) {
-  ctx.strokeStyle = color;
-  ctx.beginPath();
-  ctx.arc(
-    canvas.width / 2,
-    canvas.height / 2,
-    R,
-    0,
-    ratio * 2 * Math.PI,
-    anticlockwise
-  );
-  ctx.stroke();
-}
-
-function updateChart(income, outcome) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  let ratio = income / (income + outcome);
-
-  drawCircle("#FFFFFF", ratio, true);
-  drawCircle("#f0624d", 1 - ratio, false);
-}
 //Event Listners
 
-const btns = [expenseBtn, incomeBtn, allBtn, wishButton, fixedCostButton];
-
 expenseBtn.addEventListener("click", function () {
+  console.log("expenseeee");
   show(expenseElement);
   hide([incomeElement, allElement]);
   active(expenseBtn);
@@ -88,6 +57,7 @@ expenseBtn.addEventListener("click", function () {
 });
 
 incomeBtn.addEventListener("click", function () {
+  console.log("income");
   show(incomeElement);
   hide([expenseElement, allElement]);
   active(incomeBtn);
@@ -95,17 +65,39 @@ incomeBtn.addEventListener("click", function () {
 });
 
 allBtn.addEventListener("click", function () {
+  console.log("all");
   show(allElement);
   hide([incomeElement, expenseElement]);
   active(allBtn);
   inactive([incomeBtn, expenseBtn]);
 });
 
-addExpense.addEventListener("click", function () {
-  // IF ONE OF THE INPUTS IS EMPTY => EXIT
-  if (!expenseTitle.value || !expenseAmount.value) return;
+// Visual HELPERS
 
-  // SAVE THE ENTRY TO ENTRY_LIST
+function show(element) {
+  element.classList.remove("hide");
+}
+
+function hide(elements) {
+  elements.map((element) => {
+    element.classList.add("hide");
+  });
+}
+
+function active(element) {
+  element.classList.add("active");
+}
+
+function inactive(elements) {
+  elements.map((element) => {
+    element.classList.remove("active");
+  });
+}
+
+//Add buttons
+
+addExpense.addEventListener("click", function () {
+  if (!expenseTitle.value || !expenseAmount.value) return;
   let expense = {
     type: "expense",
     title: expenseTitle.value,
@@ -114,6 +106,7 @@ addExpense.addEventListener("click", function () {
   ENTRY_LIST.push(expense);
 
   updateUI();
+  updateWishList();
   clearInput([expenseTitle, expenseAmount]);
 });
 
@@ -128,33 +121,43 @@ addIncome.addEventListener("click", function () {
   ENTRY_LIST.push(income);
 
   updateUI();
-  clearInput([expenseTitle, expenseAmount]);
+  updateWishList();
+  clearInput([incomeTitle, incomeAmount]);
+});
+
+addWish.addEventListener("click", function () {
+  if (!wishTitle.value || !wishAmount.value) return;
+
+  let wish = {
+    type: "wish",
+    title: wishTitle.value,
+    amount: parseInt(wishAmount.value),
+  };
+  WISH_LIST.push(wish);
+
+  updateWishList();
+  clearInput([wishTitle, wishAmount]);
 });
 
 incomeList.addEventListener("click", deleteOrEdit);
 expenseList.addEventListener("click", deleteOrEdit);
 allList.addEventListener("click", deleteOrEdit);
+wishList.addEventListener("click", deleteOrEditWish);
 
-console.log("Wubba-lubba-dub-dub");
-
-// Function HELPERS
+///////////////////////// Function HELPERS
 
 function updateUI() {
   income = calculateTotal("income", ENTRY_LIST);
   outcome = calculateTotal("expense", ENTRY_LIST);
-  balance = Math.abs(calculateBalance(income, outcome));
+  balance = calculateBalance(income, outcome);
 
-  //Determine sign of balance
-  let sign = income >= outcome ? "$" : "-$";
-
-  //Update UI
-  balanceElement.innerHTML = `<small>${sign}</small>${balance}`;
+  balanceElement.innerHTML = `<small>$</small>${balance}`;
   outcomeTotalElement.innerHTML = `<small>$</small>${outcome}`;
   incomeTotalElement.innerHTML = `<small>$</small>${income}`;
 
   clearElement([expenseList, incomeList, allList]);
 
-  ENTRY_LIST.forEach((entry, index) => {
+  ENTRY_LIST.map((entry, index) => {
     if (entry.type == "expense") {
       showEntry(expenseList, entry.type, entry.title, entry.amount, index);
     } else if (entry.type == "income") {
@@ -169,14 +172,14 @@ function updateUI() {
 }
 
 function clearElement(elements) {
-  elements.forEach((elements) => {
+  elements.map((elements) => {
     elements.innerHTML = "";
   });
 }
 
 function calculateTotal(type, list) {
   let sum = 0;
-  list.forEach((entry) => {
+  list.map((entry) => {
     if (entry.type == type) {
       sum += entry.amount;
     }
@@ -205,6 +208,7 @@ function deleteOrEdit(event) {
   } else if (targetBtn.id == Edit) {
     editEntry(entry);
   }
+  updateWishList();
 }
 
 function editEntry(entry) {
@@ -233,29 +237,65 @@ function showEntry(list, type, title, amount, id) {
   list.insertAdjacentHTML(position, entry);
 }
 
+function showCanShop(list, type, title, amount, id) {
+  if (amount < balance) {
+    entry = `<li id ="${id}" class="canShop">
+                    <div class="entry"> ${title}: $${amount}</div>
+                    <div id="edit"></div>
+                    <div id="delete"></div>
+                    🛍️
+                  </li>`;
+    position = "afterbegin";
+    list.insertAdjacentHTML(position, entry);
+  } else if (amount > balance) {
+    entry = `<li id ="${id}" class="${type}">
+                    <div class="entry"> ${title}: $${amount}</div>
+                    <div id="edit"></div>
+                    <div id="delete"></div>
+                  </li>`;
+    position = "afterbegin";
+    list.insertAdjacentHTML(position, entry);
+  }
+}
+
 function clearInput(inputs) {
-  inputs.forEach((input) => {
+  inputs.map((input) => {
     input.value = "";
   });
 }
-// Visual HELPERS
 
-function show(element) {
-  element.classList.remove("hide");
-}
-
-function hide(elements) {
-  elements.forEach((element) => {
-    element.classList.add("hide");
+function updateWishList() {
+  clearElement([wishList]);
+  WISH_LIST.map((entry, index) => {
+    showCanShop(wishList, entry.type, entry.title, entry.amount, index);
   });
+
+  localStorage.setItem("wish_list", JSON.stringify(WISH_LIST));
 }
 
-function active(element) {
-  element.classList.add("active");
+function deleteWish(entry) {
+  WISH_LIST.splice(entry.id, 1);
+
+  updateWishList();
 }
 
-function inactive(elements) {
-  elements.forEach((element) => {
-    element.classList.remove("active");
-  });
+function editWish(entry) {
+  console.log(entry);
+  let ENTRYWISH = WISH_LIST[entry.id];
+  wishAmount.value = ENTRYWISH.amount;
+  wishTitle.value = ENTRYWISH.title;
+
+  deleteWish(entry);
+}
+
+function deleteOrEditWish(event) {
+  const targetBtn = event.target;
+
+  const entry = targetBtn.parentNode;
+
+  if (targetBtn.id == Delete) {
+    deleteWish(entry);
+  } else if (targetBtn.id == Edit) {
+    editWish(entry);
+  }
 }

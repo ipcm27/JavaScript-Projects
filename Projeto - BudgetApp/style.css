@@ -100,7 +100,7 @@
 }
 
 .budget-header .account .income .income-total {
-  color: #157347;
+  color: #90d8a0;
   font-family: "Gilroy Bold";
 }
 
@@ -164,43 +164,12 @@
   display: none;
 }
 
-.budget-dashboard input {
-  /* MAKE INPUT SELECTABLE */
-  -webkit-user-select: auto;
-  -moz-user-select: auto;
-  -ms-user-select: auto;
-  user-select: auto;
-}
-
 #dashboard-2 {
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 /* ////////// ALL ///////////// */
-.budget-dashboard #all {
-  width: auto;
-  position: relative;
-}
-
-.budget-dashboard #all ul {
-  width: auto;
-  height: auto;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-}
-
-.budget-dashboard #all ul.list li {
-  position: relative;
-  font-size: 1em;
-}
-
-.budget-dashboard #all ul.list li * {
-  display: inline-block;
-  height: 30px;
-  vertical-align: middle;
-}
 
 .budget-dashboard #all ul.list li .entry {
   width: auto;
@@ -214,17 +183,6 @@
   visibility: hidden;
 }
 
-.budget-dashboard #all ul.list li #delete {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  cursor: pointer;
-  background-image: url("icon/trash.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-}
-
 .budget-dashboard #all ul.list li.expense {
   color: rgb(231, 89, 103);
   opacity: 0.7;
@@ -235,14 +193,9 @@
   opacity: 0.7;
 }
 
-/* //////// EXPENSE ////////// */
-.budget-dashboard #expense {
-  width: auto;
-  height: 339px;
-  position: relative;
-}
+/* //////// Lists ////////// */
 
-.budget-dashboard #expense .input {
+.budget-dashboard .input {
   position: absolute;
   display: block;
   width: auto;
@@ -250,12 +203,12 @@
   border-top: 1px solid #ccc;
 }
 
-.budget-dashboard #expense .input * {
+.budget-dashboard .input * {
   display: inline-block;
   vertical-align: middle;
 }
 
-.budget-dashboard #expense .input input#expense-title-input {
+.budget-dashboard .input input {
   height: 40px;
   width: auto;
   padding-left: 10px;
@@ -267,7 +220,7 @@
   border: none;
 }
 
-.budget-dashboard #expense .input input#expense-amount-input {
+.budget-dashboard .input input {
   height: 40px;
   width: auto;
   padding-left: 10px;
@@ -279,14 +232,7 @@
   border: none;
 }
 
-.budget-dashboard #expense .input .add-expense img {
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.budget-dashboard #expense ul {
+.budget-dashboard ul {
   width: auto;
   height: 285px;
   list-style: none;
@@ -296,15 +242,39 @@
   overflow-x: auto;
 }
 
-.budget-dashboard #expense ul.list li {
+.budget-dashboard ul.list li {
   position: relative;
   font-size: 1em;
 }
-.budget-dashboard #expense ul.list li * {
+.budget-dashboard ul.list li * {
   display: inline-block;
   height: 30px;
   vertical-align: middle;
 }
+
+.budget-dashboard ul.list li #edit {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 50px;
+  cursor: pointer;
+  background-image: url("icon/edit.png");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+.budget-dashboard ul.list li #delete {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  cursor: pointer;
+  background-image: url("icon/trash.png");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+/* /////// Expenses //////// */
 
 .budget-dashboard #expense ul.list li .entry {
   width: auto;
@@ -317,101 +287,10 @@
   opacity: 0.7;
 }
 
-.budget-dashboard #expense ul.list li #edit {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 50px;
-  cursor: pointer;
-  background-image: url("icon/edit.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-}
-
-.budget-dashboard #expense ul.list li #delete {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  cursor: pointer;
-  background-image: url("icon/trash.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-}
-
 /* /////// INCOME //////// */
-.budget-dashboard #income {
-  width: auto;
-  height: 339px;
-  position: relative;
-}
-
-.budget-dashboard #income .input {
-  position: absolute;
-  display: inline;
-  width: auto;
-  bottom: 0;
-  border-top: 1px solid #ccc;
-}
-
-.budget-dashboard #income .input * {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.budget-dashboard #income .input input#income-title-input {
-  height: 40px;
-  width: auto;
-  padding-left: 10px;
-  font-size: 1.2em;
-  font-family: "Gilroy";
-  margin: 5px;
-  margin-left: 10px;
-  border-radius: 10px 0 0 10px;
-  border: none;
-}
-
-.budget-dashboard #income .input #income-amount-input {
-  height: 40px;
-  width: auto;
-  padding-left: 10px;
-  font-size: 1.2em;
-  font-family: "Gilroy";
-  margin: 5px;
-  margin-left: 10px;
-  border-radius: 0 10px 10px 0;
-  border: none;
-}
-
-.budget-dashboard #income .input .add-income img {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.budget-dashboard #income ul {
-  width: auto;
-  height: 285px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
-  overflow-x: auto;
-}
-
-.budget-dashboard #income ul.list li {
-  position: relative;
-  font-size: 1em;
-}
-
-.budget-dashboard #income ul.list li * {
-  display: inline-block;
-  height: 30px;
-  vertical-align: middle;
-}
 
 .budget-dashboard #income ul.list li .entry {
-  width: 250px;
+  width: auto;
   height: auto;
   padding-left: 20px;
   margin-bottom: 10px;
@@ -421,24 +300,29 @@
   opacity: 0.7;
 }
 
-.budget-dashboard #income ul.list li #edit {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 50px;
-  cursor: pointer;
-  background-image: url("icon/edit.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
+/* /////// WishList //////// */
+
+.budget-dashboard #wish ul.list li .entry {
+  width: auto;
+  height: auto;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  font-family: "Gilroy Bold";
+  opacity: 0.7;
 }
 
-.budget-dashboard #income ul.list li #delete {
+.budget-dashboard ul.list li #shop {
   position: absolute;
   width: 20px;
   height: 20px;
   right: 20px;
   cursor: pointer;
-  background-image: url("icon/trash.png");
+  background-image: url("icon/shopping-cart.png");
   background-size: 20px 20px;
   background-repeat: no-repeat;
+}
+
+.canShop {
+  color: #fb8500;
 }
