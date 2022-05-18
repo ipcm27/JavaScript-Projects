@@ -23,6 +23,14 @@
   user-select: none;
 }
 
+body {
+  background-color: #5f676d;
+}
+
+html {
+  background-color: #5f676d;
+}
+
 .budget-container {
   position: absolute;
   width: 100%;
@@ -32,22 +40,39 @@
 
 /*/////////////   HEADER   /////////////*/
 
+.header-container {
+  background-color: #5f676d;
+  padding-bottom: 15px;
+}
+
 .budget-header {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  position: relative;
   width: 95%;
   /* background-color: #3794ca; */
   background-color: #0b5681;
 
+  left: 30px;
   padding-bottom: 15px;
-  margin-top: 5px;
-  margin-left: 50px;
-  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-left: 50px;
+
   border-radius: 30px;
+}
+
+.budget-header {
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 .budget-header .balance {
   margin-top: 45px;
   margin-left: 20px;
+}
+
+.budget-header .account {
+  padding-left: 90px;
 }
 
 .budget-header .balance .title {
@@ -106,9 +131,14 @@
   font-family: "Gilroy Bold";
 }
 
+/*/ ////////////   CARDS    /////////////*/
+
 .cards-container {
+  background-color: #5f676d;
   display: flex;
   flex-direction: row;
+  position: relative;
+  height: 80%;
 }
 
 .cards-container #container2 {
@@ -175,6 +205,7 @@
 
 .budget-dashboard #all ul.list li .entry {
   width: auto;
+
   padding-left: 20px;
   margin-bottom: 10px;
   word-wrap: break-word;
@@ -203,6 +234,7 @@
   width: auto;
   bottom: 0;
   border-top: 1px solid #ccc;
+  padding-bottom: 60px;
 }
 
 .budget-dashboard .input * {
@@ -242,6 +274,10 @@
   padding: 0;
   margin-top: 20px;
   overflow-x: auto;
+}
+
+.list {
+  height: 280px !important;
 }
 
 .budget-dashboard ul.list li {

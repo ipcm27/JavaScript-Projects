@@ -157,6 +157,7 @@ function FlappyBird() {
         clearInterval(temporizador);
         if (window.onkeydown) {
           FlappyBird().start();
+          // location.reload();
         }
       }
     }, 20);

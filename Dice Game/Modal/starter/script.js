@@ -1,37 +1,10 @@
 const modal = document.querySelector(".modal");
-// console.log(modal);
+
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".close-modal");
-// const btnsOpenModal = document.querySelector('.show-modal');
+
 const btnsOpenModal = document.querySelectorAll(".show-modal");
 console.log(btnsOpenModal);
-
-// btnsOpenModal[0].addEventListener('click', function () {
-//     console.log('Botão clicado!');
-
-//     console.log(modal.classList);
-
-//     modal.classList.remove('hidden');
-//     overlay.classList.remove('hidden');
-// })
-
-// btnsOpenModal[1].addEventListener('click', function () {
-//     console.log('Botão clicado!');
-
-//     console.log(modal.classList);
-
-//     modal.classList.remove('hidden');
-//     overlay.classList.remove('hidden');
-// })
-
-// btnsOpenModal[2].addEventListener('click', function () {
-//     console.log('Botão clicado!');
-
-//     console.log(modal.classList);
-
-//     modal.classList.remove('hidden');
-//     overlay.classList.remove('hidden');
-// })
 
 btnsOpenModal.forEach((btn) => console.log(btn.textContent));
 

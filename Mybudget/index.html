@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="Balance" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="icon/favicon_io(1)/favicon-16x16.png"
+    />
+    <title>My Budget</title>
+
     <link rel="stylesheet" href="style.css" />
     <script defer src="chart.js"></script>
     <script defer src="script.js"></script>
@@ -22,21 +29,22 @@
     />
   </head>
   <body>
-    <div class="budget-container">
-      <nav class="navbar fixed-top navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img
-              src="icon/b.png"
-              alt=""
-              width="30"
-              height="24"
-              class="d-inline-block align-text-top"
-            />
-            MyBudget
-          </a>
-        </div>
-      </nav>
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="icon/favicon_io(1)/android-chrome-512x512.png"
+            alt="MB"
+            width="40"
+            height="40"
+            class=""
+          />
+          MyBudget
+        </a>
+      </div>
+    </nav>
+
+    <div class="header-container">
       <div class="budget-header">
         <div class="balance">
           <div class="title">Balance</div>
@@ -54,94 +62,95 @@
           </div>
         </div>
       </div>
-      <div class="cards-container">
-        <div class="card" id="dashboard-1" style="width: 60%">
-          <div class="budget-dashboard">
-            <div class="dash-title">Dashboard</div>
-            <div class="toggle">
-              <div class="tab" id="expenseBtn">Expensives</div>
-              <div class="tab" id="incomeBtn">Income</div>
-              <div class="tab active" id="allBtn">All</div>
-            </div>
-            <div class="hide" id="income">
-              <ul class="list"></ul>
-              <div class="input">
-                <input
-                  type="text"
-                  id="income-title-input"
-                  name="title"
-                  placeholder="Title"
-                />
-                <input
-                  type="number"
-                  id="income-amount-input"
-                  name="amount"
-                  placeholder="$0"
-                />
-                <div class="add-income">
-                  <button type="button" class="btn btn-outline-success">
-                    Add Income
-                  </button>
-                </div>
+    </div>
+    <div class="cards-container">
+      <div class="card" id="dashboard-1" style="width: 60%">
+        <div class="budget-dashboard">
+          <div class="dash-title">Dashboard</div>
+          <div class="toggle">
+            <div class="tab" id="expenseBtn">Expensives</div>
+            <div class="tab" id="incomeBtn">Income</div>
+            <div class="tab active" id="allBtn">All</div>
+          </div>
+          <div class="hide" id="income">
+            <ul class="list"></ul>
+            <div class="input">
+              <input
+                type="text"
+                id="income-title-input"
+                name="title"
+                placeholder="Title"
+              />
+              <input
+                type="number"
+                id="income-amount-input"
+                name="amount"
+                placeholder="$0"
+              />
+              <div class="add-income">
+                <button type="button" class="btn btn-outline-success">
+                  Add Income
+                </button>
               </div>
-            </div>
-
-            <div class="hide" id="expense">
-              <ul class="list"></ul>
-              <div class="input">
-                <input
-                  type="text"
-                  id="expense-title-input"
-                  name="title"
-                  placeholder="Title"
-                />
-                <input
-                  type="number"
-                  id="expense-amount-input"
-                  name="amount"
-                  placeholder="$0"
-                />
-                <div class="add-expense">
-                  <button type="button" class="btn btn-outline-danger">
-                    Add Expense
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div id="all">
-              <ul class="list"></ul>
             </div>
           </div>
-        </div>
 
-        <div class="card" id="dashboard-2" style="width: 37%">
-          <div class="budget-dashboard">
-            <div class="dash-title">WishList</div>
-            <div class="toggle">
-              <div class="tab active">2021</div>
-              <div id="wish">
-                <ul class="list"></ul>
-                <div class="input">
-                  <input
-                    type="text"
-                    id="wish-title-input"
-                    name="title"
-                    placeholder="Title"
-                  />
-                  <input
-                    type="number"
-                    id="wish-amount-input"
-                    name="amount"
-                    placeholder="$0"
-                  />
-                  <div class="addWish">
-                    <button type="button" class="btn btn-outline-primary">
-                      Add Wish
-                    </button>
-                  </div>
+          <div class="hide" id="expense">
+            <ul class="list"></ul>
+            <div class="input">
+              <input
+                type="text"
+                id="expense-title-input"
+                name="title"
+                placeholder="Title"
+              />
+              <input
+                type="number"
+                id="expense-amount-input"
+                name="amount"
+                placeholder="$0"
+              />
+              <div class="add-expense">
+                <button type="button" class="btn btn-outline-danger">
+                  Add Expense
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="all">
+            <ul class="list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="dashboard-2" style="width: 37%">
+        <div class="budget-dashboard">
+          <div class="dash-title">WishList</div>
+          <div class="toggle">
+            <div class="tab active">2021</div>
+            <div id="wish">
+              <ul class="list"></ul>
+              <div class="input">
+                <input
+                  type="text"
+                  id="wish-title-input"
+                  name="title"
+                  placeholder="Title"
+                />
+                <input
+                  type="number"
+                  id="wish-amount-input"
+                  name="amount"
+                  placeholder="$0"
+                />
+                <div class="addWish">
+                  <button type="button" class="btn btn-outline-primary">
+                    Add Wish
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
